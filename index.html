@@ -8,9 +8,13 @@
     <style>
         :root {
             --navy: #0f2a4a;
+            --navy-2: #173f6e;
             --blue: #1d5fbf;
             --blue-soft: #e9f1fc;
             --amber: #f5a524;
+            --amber-soft: #fff6e3;
+            --green: #1e8e3e;
+            --red: #c0392b;
             --ink: #1b2430;
             --muted: #5b6675;
             --line: #e3e8ef;
@@ -18,64 +22,59 @@
             --card: #ffffff;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 56px; }
         body {
             font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.6;
-            font-size: 16px;
+            background: var(--bg); color: var(--ink);
+            line-height: 1.6; font-size: 16px;
         }
         img { max-width: 100%; display: block; }
         a { color: var(--blue); }
         .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
-        /* ---------- Логотипы и плашка поддержки (обязательно по ТЗ) ---------- */
+        /* ---------- Обязательный блок: логотипы и текст поддержки ---------- */
         .support-top { background: #fff; border-bottom: 1px solid var(--line); }
         .logos {
             display: flex; justify-content: center; align-items: center;
-            gap: 40px; flex-wrap: wrap; padding: 22px 0 14px;
+            gap: 44px; flex-wrap: wrap; padding: 22px 0 14px;
         }
-        .logos img { height: 56px; width: auto; object-fit: contain; }
+        .logos img { height: 58px; width: auto; object-fit: contain; }
         .logo-fallback {
-            display: inline-flex; align-items: center; height: 56px; padding: 0 16px;
-            border: 1px solid var(--line); border-radius: 8px;
-            font-weight: 700; color: var(--navy); font-size: 14px; text-align: center;
+            display: inline-flex; align-items: center; height: 58px; padding: 0 16px;
+            border: 1px solid var(--line); border-radius: 8px; line-height: 1.25;
+            font-weight: 700; color: var(--navy); font-size: 13px; text-align: center;
         }
         .support-text {
             text-align: center; font-size: 14px; color: var(--navy);
-            padding: 0 0 18px; max-width: 900px; margin: 0 auto;
+            padding: 0 0 18px; max-width: 920px; margin: 0 auto;
         }
 
         /* ---------- Навигация ---------- */
-        nav {
-            position: sticky; top: 0; z-index: 10;
-            background: rgba(15, 42, 74, 0.96); backdrop-filter: blur(6px);
-        }
+        nav { position: sticky; top: 0; z-index: 20; background: rgba(15, 42, 74, 0.97); }
         nav .container {
-            display: flex; gap: 22px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px;
+            display: flex; gap: 22px; overflow-x: auto; padding-top: 13px; padding-bottom: 13px;
             scrollbar-width: none;
         }
-        nav a {
-            color: #dbe6f5; text-decoration: none; font-size: 14px; white-space: nowrap;
-        }
+        nav .container::-webkit-scrollbar { display: none; }
+        nav a { color: #dbe6f5; text-decoration: none; font-size: 14px; white-space: nowrap; }
         nav a:hover { color: #fff; }
 
         /* ---------- Главный экран ---------- */
         .hero {
-            background: linear-gradient(160deg, var(--navy) 0%, #173f6e 60%, #1d5fbf 100%);
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, var(--blue) 100%);
             color: #fff; padding: 64px 0 72px;
         }
-        .hero-grid {
-            display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
-        }
+        .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px; align-items: center; }
         .tag {
-            display: inline-block; background: rgba(245,165,36,0.18); color: var(--amber);
+            display: inline-block; background: rgba(245,165,36,0.16); color: var(--amber);
             border: 1px solid rgba(245,165,36,0.5); border-radius: 999px;
             padding: 4px 12px; font-size: 13px; font-weight: 600; margin-bottom: 18px;
         }
         .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 18px; }
-        .hero p.lead { font-size: 1.15rem; color: #d6e3f5; margin-bottom: 28px; }
+        .hero p.lead { font-size: 1.15rem; color: #d6e3f5; margin-bottom: 26px; }
+        .hero-facts { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 30px; }
+        .hero-facts div { font-size: 13px; color: #b9cbe4; }
+        .hero-facts strong { display: block; font-size: 1.35rem; color: #fff; }
         .btns { display: flex; gap: 14px; flex-wrap: wrap; }
         .btn {
             display: inline-block; padding: 13px 26px; border-radius: 8px;
@@ -87,43 +86,44 @@
         .btn-ghost:hover { background: rgba(255,255,255,0.1); }
         .hero-visual {
             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 14px; padding: 14px;
+            border-radius: 16px; padding: 18px;
         }
-        .hero-visual img { border-radius: 8px; width: 100%; }
-        .hero-visual .cap { font-size: 13px; color: #c3d3ea; margin-top: 8px; text-align: center; }
+        .hero-visual svg { width: 100%; height: auto; display: block; }
+        .hero-visual .cap { font-size: 13px; color: #c3d3ea; margin-top: 10px; text-align: center; }
 
         /* ---------- Секции ---------- */
-        section { padding: 64px 0; }
+        section { padding: 68px 0; }
         section.alt { background: #fff; }
-        .section-head { max-width: 760px; margin-bottom: 34px; }
+        .section-head { max-width: 780px; margin-bottom: 34px; }
         .eyebrow { color: var(--blue); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
         h2 { font-size: 1.9rem; color: var(--navy); margin: 6px 0 12px; line-height: 1.25; }
         h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 8px; }
         .muted { color: var(--muted); }
+        .sub-h { margin: 40px 0 16px; }
 
         .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .card {
-            background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px;
-        }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
         section.alt .card { background: var(--bg); }
         .card .num {
             width: 36px; height: 36px; border-radius: 50%; background: var(--blue-soft); color: var(--blue);
             display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 14px;
         }
-        .card .stat { font-size: 1.6rem; font-weight: 800; color: #c0392b; margin-bottom: 6px; }
+        .card .stat { font-size: 1.55rem; font-weight: 800; color: var(--red); margin-bottom: 6px; }
 
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
         .checklist { list-style: none; }
         .checklist li { padding-left: 32px; position: relative; margin-bottom: 14px; }
         .checklist li::before {
-            content: "✓"; position: absolute; left: 0; top: 0;
+            content: "✓"; position: absolute; left: 0; top: 2px;
             width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff;
-            font-size: 13px; display: flex; align-items: center; justify-content: center; margin-top: 2px;
+            font-size: 13px; display: flex; align-items: center; justify-content: center;
         }
 
-        /* Как работает */
+        /* Схема системы */
+        .diagram { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin-bottom: 26px; }
+        .diagram svg { width: 100%; height: auto; display: block; }
         .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
-        .flow .card { position: relative; }
+        .flow .card { position: relative; padding-top: 28px; }
         .flow .card::before {
             counter-increment: step; content: counter(step);
             position: absolute; top: -14px; left: 20px;
@@ -132,43 +132,93 @@
             display: flex; align-items: center; justify-content: center; font-size: 14px;
         }
 
+        /* Фото */
+        .photo-grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 18px; }
+        .photo-grid figure:first-child { grid-row: span 2; }
+        .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+        figure { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin: 0; }
+        section.alt figure { background: var(--bg); }
+        figure a { display: block; }
+        figure img { border-radius: 8px; width: 100%; height: 100%; object-fit: cover; }
+        .photo-grid figure:first-child img { aspect-ratio: 4 / 3; }
+        .photo-grid figure:not(:first-child) img, .photo-row img { aspect-ratio: 4 / 3; }
+        figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; text-align: center; }
+        .photo-missing {
+            aspect-ratio: 4 / 3; border-radius: 8px; background: var(--blue-soft);
+            border: 2px dashed #b9cde9; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 8px;
+            color: var(--blue); font-size: 14px; font-weight: 600; text-align: center; padding: 10px;
+        }
+        .photo-missing::before {
+            content: ""; width: 44px; height: 34px; border-radius: 7px; border: 3px solid currentColor;
+            background: radial-gradient(circle at 50% 55%, currentColor 0 7px, transparent 8px);
+            opacity: .7;
+        }
+        .photo-missing small { font-weight: 400; color: var(--muted); font-size: 12px; }
+
         /* Таблицы */
         .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
         table { width: 100%; border-collapse: collapse; min-width: 560px; }
         th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
         th { background: var(--blue-soft); color: var(--navy); font-size: 14px; }
         tr:last-child td { border-bottom: none; }
-        td:first-child { font-weight: 600; color: var(--navy); width: 34%; }
+        .specs td:first-child { font-weight: 600; color: var(--navy); width: 34%; }
         .compare td { text-align: center; }
-        .compare td:first-child { text-align: left; }
+        .compare td:first-child { text-align: left; font-weight: 600; color: var(--navy); width: 30%; }
         .compare th:not(:first-child) { text-align: center; }
-        .yes { color: #1e8e3e; font-weight: 700; }
-        .no { color: #c0392b; font-weight: 700; }
+        .variants td:first-child { font-weight: 600; color: var(--navy); }
+        .yes { color: var(--green); font-weight: 700; }
+        .no { color: var(--red); font-weight: 700; }
         .part { color: #b7791f; font-weight: 700; }
-        .compare .ours { background: #fff8e8; }
+        .ours { background: var(--amber-soft); }
+        .badge {
+            display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+            background: var(--amber-soft); color: #8a5a00; border: 1px solid #f3d38f; white-space: nowrap;
+        }
         .note { font-size: 13px; color: var(--muted); margin-top: 10px; }
 
-        /* Галереи */
+        /* Испытания */
         .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .gallery-3 { grid-template-columns: repeat(3, 1fr); }
-        figure {
-            background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px;
+        .gallery img { height: auto; object-fit: contain; }
+        .result-box {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 26px;
         }
-        figure img { border-radius: 8px; width: 100%; height: auto; }
-        figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; text-align: center; }
-        .photo-missing {
-            aspect-ratio: 4 / 3; border-radius: 8px; background: var(--bg);
-            border: 2px dashed var(--line); display: flex; align-items: center; justify-content: center;
-            color: var(--muted); font-size: 14px; text-align: center; padding: 10px;
+        .result-box .card { text-align: center; }
+        .result-box strong { display: block; font-size: 1.7rem; color: var(--blue); line-height: 1.2; margin-bottom: 4px; }
+
+        /* Как пользоваться */
+        .steps { list-style: none; counter-reset: s; display: grid; gap: 14px; }
+        .steps li {
+            counter-increment: s; position: relative; background: #fff; border: 1px solid var(--line);
+            border-radius: 12px; padding: 18px 20px 18px 66px;
         }
+        section.alt .steps li { background: var(--bg); }
+        .steps li::before {
+            content: counter(s); position: absolute; left: 18px; top: 18px;
+            width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff;
+            font-weight: 700; display: flex; align-items: center; justify-content: center;
+        }
+        .steps h3 { margin-bottom: 4px; }
+        code { background: var(--blue-soft); color: var(--navy); padding: 1px 6px; border-radius: 4px; font-size: 14px; }
+
+        /* Дорожная карта */
+        .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .stage { border-top: 4px solid var(--line); }
+        .stage.done { border-top-color: var(--green); }
+        .stage.now { border-top-color: var(--amber); }
+        .stage .st { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+        .stage.done .st { color: var(--green); }
+        .stage.now .st { color: #b7791f; }
+        .stage.next .st { color: var(--muted); }
+        .stage ul { padding-left: 18px; color: var(--muted); font-size: 15px; }
 
         /* Команда */
         .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .member { text-align: center; }
         .avatar {
-            width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 12px;
+            width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 12px;
             background: var(--blue-soft); color: var(--blue); font-size: 28px; font-weight: 700;
-            display: flex; align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center; object-fit: cover;
         }
         .role { color: var(--blue); font-size: 14px; font-weight: 600; margin-bottom: 6px; }
 
@@ -184,41 +234,44 @@
         .contact-list a { color: #fff; font-weight: 600; text-decoration: none; }
         .contact-list span { color: #9fb6d6; font-size: 13px; display: block; }
 
-        footer {
-            background: #fff; border-top: 1px solid var(--line); padding: 30px 0; text-align: center;
-            font-size: 14px; color: var(--muted);
-        }
-        footer .support-text { padding: 12px 0 0; color: var(--muted); font-size: 13px; }
+        footer { background: #fff; border-top: 1px solid var(--line); padding: 30px 0; text-align: center; font-size: 14px; color: var(--muted); }
+        footer .logos { padding: 0 0 14px; gap: 30px; }
+        footer .logos img, footer .logo-fallback { height: 40px; }
+        footer .support-text { padding: 10px 0 0; color: var(--muted); font-size: 13px; }
 
         @media (max-width: 900px) {
             .hero-grid, .two-col, .contact-box { grid-template-columns: 1fr; }
-            .cards, .team, .gallery-3 { grid-template-columns: 1fr 1fr; }
-            .flow { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+            .cards, .team, .result-box { grid-template-columns: 1fr 1fr; }
+            .flow, .roadmap { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+            .photo-row { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
             .hero { padding: 44px 0 52px; }
             .hero h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
-            section { padding: 48px 0; }
+            section { padding: 50px 0; }
             .logos { gap: 20px; }
             .logos img, .logo-fallback { height: 42px; }
-            .cards, .team, .gallery, .gallery-3, .flow { grid-template-columns: 1fr; }
+            .cards, .team, .gallery, .flow, .roadmap, .result-box, .photo-row { grid-template-columns: 1fr; }
+            .photo-grid { grid-template-columns: 1fr; }
+            .photo-grid figure:first-child { grid-row: auto; }
             .contact-box { padding: 28px 22px; }
+            .steps li { padding-left: 60px; }
         }
     </style>
 </head>
 <body>
 
 <!-- ======================================================================
-     ОБЯЗАТЕЛЬНЫЙ БЛОК ПО ТЗ (Приложение № 3 к Договору, п. 3.1 «б»;
-     п. 7.2 Договора): логотипы и текст о поддержке на главной странице.
+     ОБЯЗАТЕЛЬНЫЙ БЛОК (Приложение № 3 к Договору, п. 3.1 «б»; п. 7.2 Договора):
+     логотипы Фонда, Платформы и ФП «Технологии» + текст о поддержке на главной.
      ====================================================================== -->
 <header class="support-top">
     <div class="container">
         <div class="logos">
             <img src="img/fondsodin.SVG" alt="Фонд содействия инновациям" />
             <img src="img/platunitehpred.svg" alt="Платформа университетского технологического предпринимательства" />
-            <!-- Логотип ФП «Технологии»: положите файл img/fp-tehnologii.svg (или .png и поправьте путь) -->
+            <!-- ЛОГОТИП ФП «Технологии»: положите файл img/fp-tehnologii.svg (или .png и поправьте путь) -->
             <img src="img/fp-tehnologii.svg" alt="Федеральный проект «Технологии»"
                  onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>Федеральный проект<br>«Технологии»</span>'" />
         </div>
@@ -232,12 +285,14 @@
     <div class="container">
         <a href="#problem">Проблема</a>
         <a href="#solution">Решение</a>
+        <a href="#photos">Фото</a>
         <a href="#how">Как работает</a>
         <a href="#specs">Характеристики</a>
         <a href="#tests">Испытания</a>
-        <a href="#photos">Фото</a>
+        <a href="#usage">Как пользоваться</a>
         <a href="#compare">Сравнение</a>
-        <a href="#install">Установка</a>
+        <a href="#market">Для кого</a>
+        <a href="#roadmap">Планы</a>
         <a href="#team">Команда</a>
         <a href="#contacts">Контакты</a>
     </div>
@@ -251,18 +306,47 @@
             <h1>Адаптивная система стабилизации светового потока для моноколёс</h1>
             <p class="lead">
                 Без «слепых зон» при разгоне и без ослепления пешеходов при торможении.
-                Свет фары остаётся ровным на дороге в любом режиме езды.
+                Свет фары остаётся на дороге, как бы ни наклонялся корпус.
             </p>
+            <div class="hero-facts">
+                <div><strong>≈1°</strong>отклонение фары при наклоне корпуса до 8° на испытаниях</div>
+                <div><strong>100 Гц</strong>частота цикла управления</div>
+            </div>
             <div class="btns">
                 <a class="btn btn-primary" href="#contacts">Оставить заявку на тестирование</a>
-                <a class="btn btn-ghost" href="#solution">Узнать больше</a>
+                <a class="btn btn-ghost" href="#how">Как это работает</a>
             </div>
         </div>
         <div class="hero-visual">
-            <!-- Замените на фото «до/после»: img/before-after.jpg -->
-            <img src="img/before-after.jpg" alt="Световое пятно фары без системы и с системой стабилизации"
-                 onerror="this.src='img/kalpid.png'" />
-            <div class="cap">Без системы свет «прыгает» вместе с корпусом, с системой — остаётся на дороге</div>
+            <svg viewBox="0 0 520 300" role="img" aria-label="Сравнение: без системы луч уходит в землю при разгоне, с системой остаётся параллельным дороге">
+                <defs>
+                    <linearGradient id="beamBad" x1="0" x2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="beamGood" x1="0" x2="1"><stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/><stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/></linearGradient>
+                </defs>
+                <!-- Без системы -->
+                <text x="130" y="26" fill="#ffb3a7" font-size="15" font-weight="700" text-anchor="middle">Без системы</text>
+                <line x1="10" y1="240" x2="250" y2="240" stroke="#5f7ea6" stroke-width="2"/>
+                <g transform="rotate(14 70 205)">
+                    <rect x="52" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
+                    <circle cx="70" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
+                    <rect x="86" y="140" width="12" height="14" rx="3" fill="#ffd27a"/>
+                    <polygon points="98,141 250,175 250,215 98,153" fill="url(#beamBad)"/>
+                </g>
+                <text x="130" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч упирается в землю</text>
+                <!-- разделитель -->
+                <line x1="262" y1="40" x2="262" y2="280" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 5"/>
+                <!-- С системой -->
+                <text x="392" y="26" fill="#9fe0b0" font-size="15" font-weight="700" text-anchor="middle">С системой</text>
+                <line x1="275" y1="240" x2="515" y2="240" stroke="#5f7ea6" stroke-width="2"/>
+                <g transform="rotate(14 335 205)">
+                    <rect x="317" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
+                    <circle cx="335" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
+                </g>
+                <rect x="358" y="150" width="14" height="14" rx="3" fill="#ffe7a8"/>
+                <polygon points="372,151 515,141 515,183 372,163" fill="url(#beamGood)"/>
+                <text x="395" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч смотрит вперёд</text>
+            </svg>
+            <div class="cap">Корпус наклонён одинаково — меняется только положение фары</div>
         </div>
     </div>
 </section>
@@ -283,12 +367,12 @@
                 <div class="num">1</div>
                 <h3>Разгон</h3>
                 <div class="stat">20–30 м → 3–5 м</div>
-                <p class="muted">Райдер наклоняется вперёд, фара опускается в землю. Дальность освещения резко падает, и препятствия не видно заранее.</p>
+                <p class="muted">Райдер наклоняется вперёд, фара опускается в землю. Дальность освещения резко падает, препятствия не видно заранее.</p>
             </div>
             <div class="card">
                 <div class="num">2</div>
                 <h3>Торможение</h3>
-                <div class="stat">Свет вверх</div>
+                <div class="stat">Свет в глаза</div>
                 <p class="muted">Корпус отклоняется назад, фара задирается и слепит встречных пешеходов и водителей. Дорога перед колесом остаётся в темноте.</p>
             </div>
             <div class="card">
@@ -306,11 +390,14 @@
     <div class="container two-col">
         <div>
             <div class="eyebrow">Решение</div>
-            <h2>Умный модуль динамической стабилизации фары</h2>
+            <h2>Модуль активной стабилизации фары</h2>
             <p>
                 Компактный модуль на базе микроконтроллера ESP32 и инерциального датчика MPU6050 устанавливается
-                под фарой. С помощью сервопривода он непрерывно компенсирует наклоны моноколеса в вертикальной
-                плоскости и удерживает световой пучок параллельно дорожному полотну.
+                под фарой. Он 100 раз в секунду измеряет наклон корпуса и с помощью сервопривода поворачивает
+                фару в обратную сторону, удерживая световой пучок параллельно дороге.
+            </p>
+            <p class="muted" style="margin-top:12px;">
+                Модуль не вмешивается в электронику и балансировку моноколеса — он управляет только положением фары.
             </p>
         </div>
         <div>
@@ -318,137 +405,224 @@
             <ul class="checklist">
                 <li><strong>Точная оценка угла.</strong> Фильтр Калмана объединяет данные гироскопа и акселерометра и компенсирует дрейф гироскопа.</li>
                 <li><strong>Плавная отработка.</strong> ПИД-регулятор удерживает фару без рывков и колебаний.</li>
-                <li><strong>Настройка со смартфона.</strong> Встроенный веб-интерфейс по Wi-Fi: мониторинг углов в реальном времени, запись и выгрузка данных.</li>
-                <li><strong>Ограничение хода.</strong> Отклонение сервопривода программно ограничено, фара не уходит в крайние положения. В следующей версии — автоматический возврат в нейтраль при сбое датчика.</li>
+                <li><strong>Ограничение хода.</strong> Отклонение сервопривода программно ограничено, фара не уходит в крайние положения.</li>
             </ul>
         </div>
     </div>
 </section>
 
-<!-- ====== 4. КАК РАБОТАЕТ ====== -->
-<section id="how">
+<!-- ====== 4. ФОТО РАБОЧЕГО СОСТОЯНИЯ ======
+     КУДА КЛАСТЬ ФОТО: в папку img/ под этими именами. Пока файла нет — видна рамка-заглушка.
+       img/monowheel-1.jpg — моноколесо с установленной платой
+       img/monowheel-2.jpg — световое пятно от фары на дороге
+     Если формат другой (например .png) — поправьте путь в src и href ниже. -->
+<section id="photos">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Фото</div>
+            <h2>Система в работе</h2>
+            <p class="muted">Нажмите на фото, чтобы открыть его в полном размере.</p>
+        </div>
+        <div class="gallery">
+            <figure>
+                <a href="img/monowheel-1.jpg" target="_blank" rel="noopener">
+                    <img src="img/monowheel-1.jpg" alt="Моноколесо с установленной платой системы стабилизации"
+                         onerror="this.parentNode.outerHTML='<div class=&quot;photo-missing&quot;>Моноколесо с платой<small>img/monowheel-1.jpg</small></div>'" />
+                </a>
+                <figcaption>Моноколесо с установленной системой стабилизации</figcaption>
+            </figure>
+            <figure>
+                <a href="img/monowheel-2.jpg" target="_blank" rel="noopener">
+                    <img src="img/monowheel-2.jpg" alt="Световое пятно от фары на дороге"
+                         onerror="this.parentNode.outerHTML='<div class=&quot;photo-missing&quot;>Световое пятно на дороге<small>img/monowheel-2.jpg</small></div>'" />
+                </a>
+                <figcaption>Световое пятно от фары на дороге</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- ====== 5. КАК РАБОТАЕТ ====== -->
+<section id="how" class="alt">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Принцип работы</div>
             <h2>Как работает система</h2>
+            <p class="muted">Замкнутый контур управления: измерить наклон → отфильтровать шум → рассчитать поправку → повернуть фару. Цикл повторяется каждые 10 мс.</p>
         </div>
+
+        <div class="diagram">
+            <svg viewBox="0 0 1000 160" role="img" aria-label="Схема: датчик MPU6050, микроконтроллер ESP32 с фильтром Калмана и ПИД-регулятором, сервопривод, фара">
+                <defs>
+                    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d5fbf"/></marker>
+                </defs>
+                <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+                    <rect x="10" y="40" width="170" height="80" rx="12" fill="#e9f1fc" stroke="#1d5fbf" stroke-width="2"/>
+                    <text x="95" y="74" font-size="17" font-weight="700" fill="#0f2a4a">MPU6050</text>
+                    <text x="95" y="98" font-size="13" fill="#5b6675">гироскоп + акселерометр</text>
+
+                    <rect x="240" y="20" width="400" height="120" rx="12" fill="#fff" stroke="#0f2a4a" stroke-width="2"/>
+                    <text x="440" y="44" font-size="15" font-weight="700" fill="#0f2a4a">ESP32</text>
+                    <rect x="260" y="60" width="170" height="60" rx="10" fill="#fff6e3" stroke="#f5a524" stroke-width="2"/>
+                    <text x="345" y="86" font-size="15" font-weight="700" fill="#0f2a4a">Фильтр Калмана</text>
+                    <text x="345" y="106" font-size="12" fill="#5b6675">угол без шума и дрейфа</text>
+                    <rect x="450" y="60" width="170" height="60" rx="10" fill="#fff6e3" stroke="#f5a524" stroke-width="2"/>
+                    <text x="535" y="86" font-size="15" font-weight="700" fill="#0f2a4a">ПИД-регулятор</text>
+                    <text x="535" y="106" font-size="12" fill="#5b6675">цель — 0° (горизонт)</text>
+
+                    <rect x="700" y="40" width="130" height="80" rx="12" fill="#e9f1fc" stroke="#1d5fbf" stroke-width="2"/>
+                    <text x="765" y="74" font-size="16" font-weight="700" fill="#0f2a4a">Сервопривод</text>
+                    <text x="765" y="98" font-size="13" fill="#5b6675">RDS3115MG</text>
+
+                    <rect x="870" y="40" width="120" height="80" rx="12" fill="#0f2a4a"/>
+                    <text x="930" y="74" font-size="16" font-weight="700" fill="#ffe7a8">Фара</text>
+                    <text x="930" y="98" font-size="13" fill="#c3d3ea">ровный свет</text>
+                </g>
+                <line x1="180" y1="80" x2="258" y2="90" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
+                <line x1="430" y1="90" x2="448" y2="90" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
+                <line x1="620" y1="90" x2="698" y2="80" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
+                <line x1="830" y1="80" x2="868" y2="80" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
+            </svg>
+        </div>
+
         <div class="flow">
             <div class="card">
                 <h3>Измерение</h3>
-                <p class="muted">Датчик MPU6050 измеряет угловую скорость и ускорение корпуса.</p>
+                <p class="muted">MPU6050 измеряет угловую скорость и ускорение корпуса. При включении гироскоп автоматически калибруется.</p>
             </div>
             <div class="card">
                 <h3>Фильтрация</h3>
-                <p class="muted">Фильтр Калмана вычисляет устойчивое значение угла наклона, отсекая вибрации и дрейф.</p>
+                <p class="muted">Фильтр Калмана объединяет оба сигнала: акселерометр точен в покое, гироскоп — в движении. Вибрации и дрейф отсекаются.</p>
             </div>
             <div class="card">
                 <h3>Регулирование</h3>
-                <p class="muted">ПИД-регулятор рассчитывает, на сколько нужно повернуть фару, чтобы она смотрела на дорогу.</p>
+                <p class="muted">ПИД-регулятор сравнивает угол с горизонтом и рассчитывает, на сколько повернуть фару.</p>
             </div>
             <div class="card">
                 <h3>Компенсация</h3>
-                <p class="muted">Сервопривод поворачивает фару на рассчитанный угол — световое пятно остаётся на месте.</p>
+                <p class="muted">Сервопривод поворачивает фару в сторону, обратную наклону, — световое пятно остаётся на месте.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ====== 5. ХАРАКТЕРИСТИКИ ====== -->
-<section id="specs" class="alt">
+<!-- ====== 6. ХАРАКТЕРИСТИКИ ====== -->
+<section id="specs">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Характеристики</div>
             <h2>Технические характеристики прототипа</h2>
         </div>
         <div class="table-wrap">
-            <table>
+            <table class="specs">
                 <tr><th>Параметр</th><th>Значение</th></tr>
                 <tr><td>Вычислительное ядро</td><td>ESP32 DevKit V1 (32-bit, Wi-Fi / Bluetooth)</td></tr>
-                <tr><td>Инерциальный датчик</td><td>MPU6050 / GY-521 (6 осей: MEMS-акселерометр + гироскоп)</td></tr>
-                <tr><td>Алгоритм обработки</td><td>Фильтр Калмана с компенсацией дрейфа гироскопа + дискретный ПИД-регулятор</td></tr>
-                <tr><td>Диапазон стабилизации</td><td>до ±25° по вертикальной оси (расчётный)</td></tr>
+                <tr><td>Инерциальный датчик</td><td>MPU6050 / GY-521 — 6 осей (MEMS-акселерометр ±2 g + гироскоп ±250 °/с)</td></tr>
+                <tr><td>Алгоритм обработки</td><td>Фильтр Калмана с оценкой смещения гироскопа + дискретный ПИД-регулятор</td></tr>
+                <tr><td>Частота цикла управления</td><td>100 Гц (каждые 10 мс)</td></tr>
+                <tr><td>Точность удержания</td><td>≈1° при наклоне корпуса до 8° (по результатам испытаний)</td></tr>
+                <tr><td>Диапазон стабилизации</td><td>до ±25° по вертикальной оси <span class="badge">расчётный</span></td></tr>
                 <tr><td>Привод</td><td>Цифровой сервопривод с металлическим редуктором RDS3115MG (момент до 13,5 кг·см)</td></tr>
                 <tr><td>Питание</td><td>5 В DC (низковольтное)</td></tr>
-                <tr><td>Защита корпуса</td><td>от брызг и пыли, целевой класс IP54 (корпус в разработке)</td></tr>
+                <tr><td>Защита корпуса</td><td>от брызг и пыли, класс IP54 <span class="badge">в разработке</span></td></tr>
                 <tr><td>Габариты модуля</td><td>менее 15 × 15 см, установка под фару</td></tr>
-                <tr><td>Интерфейс</td><td>Веб-интерфейс по Wi-Fi: мониторинг, запись логов в CSV</td></tr>
             </table>
         </div>
     </div>
 </section>
 
-<!-- ====== 6. ИСПЫТАНИЯ (подтверждающие материалы, п. 3.11 «г» Положения) ====== -->
-<section id="tests">
+<!-- ====== 7. ИСПЫТАНИЯ (подтверждающие материалы, п. 3.11 «г» Положения) ====== -->
+<section id="tests" class="alt">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Испытания</div>
             <h2>Результаты испытаний прототипа</h2>
             <p class="muted">
-                Мы сравнили четыре варианта алгоритма: комплементарный фильтр и фильтр Калмана, каждый — с ПИД-регулятором
-                и без него. На графиках синяя линия — угол наклона колеса, оранжевая — угол фары, пунктир — целевое
-                горизонтальное положение (0°). Лучший результат показала связка «фильтр Калмана + ПИД-регулятор».
+                Для испытаний использовались два датчика: первый закреплён на корпусе и управляет фарой,
+                второй установлен на самой фаре и измеряет её фактический угол. Оба угла
+                записывались одновременно и строились на одном графике.
             </p>
         </div>
 
-        <h3 style="margin-bottom:14px;">Графики углов наклона</h3>
+        <div class="result-box">
+            <div class="card"><strong>до 8°</strong><span class="muted">наклон корпуса в ходе испытаний</span></div>
+            <div class="card"><strong>≈1°</strong><span class="muted">отклонение фары от горизонта в основном режиме</span></div>
+            <div class="card"><strong>4</strong><span class="muted">варианта алгоритма сравнено</span></div>
+        </div>
+
+        <h3>Какие варианты сравнивали</h3>
+        <div class="table-wrap" style="margin:14px 0 8px;">
+            <table class="variants">
+                <tr><th>Вариант</th><th>Фильтр</th><th>Управление сервоприводом</th></tr>
+                <tr><td>1</td><td>Комплементарный (α = 0,98)</td><td>Без ПИД, напрямую по углу</td></tr>
+                <tr><td>2</td><td>Комплементарный (α = 0,98)</td><td>ПИД-регулятор</td></tr>
+                <tr><td>3</td><td>Калмана</td><td>Без ПИД, напрямую по углу</td></tr>
+                <tr class="ours"><td>4 <span class="badge">итоговый</span></td><td>Калмана</td><td>ПИД-регулятор (Kp = 1,2; Ki = 0,5; Kd = 0,1)</td></tr>
+            </table>
+        </div>
+        <p class="note">Коэффициенты ПИД-регулятора подобраны экспериментально.</p>
+
+        <h3 class="sub-h">Графики углов наклона</h3>
         <div class="gallery">
             <figure>
-                <img src="img/kalpid.png" alt="График: фильтр Калмана и ПИД-регулятор" />
-                <figcaption><strong>Фильтр Калмана + ПИД-регулятор</strong> — итоговый вариант</figcaption>
+                <a href="img/kalpid.png" target="_blank" rel="noopener"><img src="img/kalpid.png" alt="График: фильтр Калмана и ПИД-регулятор" /></a>
+                <figcaption><strong>Вариант 4: фильтр Калмана + ПИД</strong> — итоговый</figcaption>
             </figure>
             <figure>
-                <img src="img/compid.png" alt="График: комплементарный фильтр и ПИД-регулятор" />
-                <figcaption>Комплементарный фильтр + ПИД-регулятор</figcaption>
+                <a href="img/compid.png" target="_blank" rel="noopener"><img src="img/compid.png" alt="График: комплементарный фильтр и ПИД-регулятор" /></a>
+                <figcaption>Вариант 2: комплементарный фильтр + ПИД</figcaption>
             </figure>
             <figure>
-                <img src="img/kal.png" alt="График: фильтр Калмана без ПИД-регулятора" />
-                <figcaption>Фильтр Калмана без ПИД-регулятора</figcaption>
+                <a href="img/kal.png" target="_blank" rel="noopener"><img src="img/kal.png" alt="График: фильтр Калмана без ПИД-регулятора" /></a>
+                <figcaption>Вариант 3: фильтр Калмана без ПИД</figcaption>
             </figure>
             <figure>
-                <img src="img/kom.png" alt="График: комплементарный фильтр без ПИД-регулятора" />
-                <figcaption>Комплементарный фильтр без ПИД-регулятора</figcaption>
+                <a href="img/kom.png" target="_blank" rel="noopener"><img src="img/kom.png" alt="График: комплементарный фильтр без ПИД-регулятора" /></a>
+                <figcaption>Вариант 1: комплементарный фильтр без ПИД</figcaption>
             </figure>
         </div>
-        <p class="note">Ось X — время, с; ось Y — угол, градусы.</p>
+        <p class="note">
+            Синяя линия — наклон корпуса моноколеса, оранжевая — фактический угол фары, зелёный пунктир — горизонт (0°).
+            Ось X — время, с; ось Y — угол, градусы. Отдельные кратковременные выбросы на графике фары —
+            задача следующей итерации доработки.
+        </p>
     </div>
 </section>
 
-<!-- ====== ФОТО МОНОКОЛЕСА ======
-     Положите реальные фото в папку img/ под именами monowheel-1.jpg … monowheel-4.jpg
-     (или поправьте пути ниже). Пока файла нет, на его месте видна пунктирная рамка. -->
-<section id="photos" class="alt">
-    <div class="container">
-        <div class="section-head">
-            <div class="eyebrow">Фото</div>
-            <h2>Система на моноколесе</h2>
+<!-- ====== 8. КАК ПОЛЬЗОВАТЬСЯ ====== -->
+<section id="usage">
+    <div class="container two-col">
+        <div>
+            <div class="eyebrow">Инструкция</div>
+            <h2>Как установить и пользоваться</h2>
+            <p class="muted">
+                Установка не требует вмешательства в электронику моноколеса.
+                После включения система работает автоматически — райдеру ничего настраивать в дороге не нужно.
+            </p>
         </div>
-        <div class="gallery">
-            <figure>
-                <img src="img/monowheel-1.jpg" alt="Моноколесо с установленной системой стабилизации"
-                     onerror="this.outerHTML='<div class=&quot;photo-missing&quot;>Фото моноколеса<br>img/monowheel-1.jpg</div>'" />
-                <figcaption>Моноколесо с установленным модулем</figcaption>
-            </figure>
-            <figure>
-                <img src="img/monowheel-2.jpg" alt="Модуль стабилизации под фарой крупным планом"
-                     onerror="this.outerHTML='<div class=&quot;photo-missing&quot;>Фото моноколеса<br>img/monowheel-2.jpg</div>'" />
-                <figcaption>Модуль под фарой крупным планом</figcaption>
-            </figure>
-            <figure>
-                <img src="img/monowheel-3.jpg" alt="Световое пятно на дороге при разгоне"
-                     onerror="this.outerHTML='<div class=&quot;photo-missing&quot;>Фото моноколеса<br>img/monowheel-3.jpg</div>'" />
-                <figcaption>Световое пятно при разгоне</figcaption>
-            </figure>
-            <figure>
-                <img src="img/monowheel-4.jpg" alt="Световое пятно на дороге при торможении"
-                     onerror="this.outerHTML='<div class=&quot;photo-missing&quot;>Фото моноколеса<br>img/monowheel-4.jpg</div>'" />
-                <figcaption>Световое пятно при торможении</figcaption>
-            </figure>
-        </div>
+        <ol class="steps">
+            <li>
+                <h3>Установите модуль</h3>
+                <p class="muted">Закрепите корпус модуля под фарой на 4 точки (саморезы или втулки), установите фару на поворотный кронштейн сервопривода.</p>
+            </li>
+            <li>
+                <h3>Подключите питание</h3>
+                <p class="muted">Подведите питание 5 В и провод управления фарой.</p>
+            </li>
+            <li>
+                <h3>Включите и не двигайте 5 секунд</h3>
+                <p class="muted">При включении модуль калибрует гироскоп. Моноколесо в это время должно стоять неподвижно.</p>
+            </li>
+            <li>
+                <h3>Поезжайте</h3>
+                <p class="muted">Стабилизация работает автоматически: фара удерживает свет на дороге при разгоне, торможении и на неровностях.</p>
+            </li>
+        </ol>
     </div>
 </section>
 
-<!-- ====== 7. СРАВНЕНИЕ С АНАЛОГАМИ ====== -->
-<section id="compare">
+<!-- ====== 9. СРАВНЕНИЕ С АНАЛОГАМИ ====== -->
+<section id="compare" class="alt">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Конкурентные преимущества</div>
@@ -479,49 +653,90 @@
                     <td>Не требует действий райдера в движении</td>
                     <td class="yes">Да</td><td class="no">Нет</td><td class="yes">Да</td><td class="yes ours">Да</td>
                 </tr>
-                <tr>
-                    <td>Настройка и диагностика со смартфона</td>
-                    <td class="no">Нет</td><td class="no">Нет</td><td class="no">Нет</td><td class="yes ours">Да</td>
-                </tr>
             </table>
         </div>
     </div>
 </section>
 
-<!-- ====== 8. СОВМЕСТИМОСТЬ И УСТАНОВКА ====== -->
-<section id="install" class="alt">
+<!-- ====== 10. ДЛЯ КОГО И СОВМЕСТИМОСТЬ ====== -->
+<section id="market">
     <div class="container two-col">
         <div>
-            <div class="eyebrow">Совместимость</div>
-            <h2>Для каких моноколёс подходит</h2>
-            <p>Модуль рассчитан на популярные серийные модели со свободным пространством под фарой или съёмным блоком оптики:</p>
-            <ul class="checklist" style="margin-top:16px;">
+            <div class="eyebrow">Рынок</div>
+            <h2>Для кого</h2>
+            <ul class="checklist" style="margin-top:12px;">
+                <li><strong>Райдеры</strong>, которые ездят в тёмное время суток и в межсезонье, — готовый модуль для самостоятельной установки.</li>
+                <li><strong>Сервисы и магазины</strong> электротранспорта — установка как дополнительная услуга.</li>
+                <li><strong>Производители</strong> моноколёс — интеграция модуля в штатную оптику.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Совместимость</h3>
+            <p class="muted">Подходит для моделей со свободным пространством под фарой или съёмным блоком оптики:</p>
+            <ul class="checklist" style="margin-top:14px;">
                 <li>Extreme Bull Rocket</li>
                 <li>Veteran Sherman S</li>
                 <li>Другие модели с возможностью доработки крепления фары</li>
             </ul>
         </div>
-        <div class="card">
-            <h3>Для кого</h3>
-            <ul class="checklist" style="margin-top:10px;">
-                <li><strong>Райдеры</strong>, которые ездят в тёмное время суток и в межсезонье.</li>
-                <li><strong>Сервисы и магазины</strong> электротранспорта — установка как дополнительная опция.</li>
-                <li><strong>Производители</strong> моноколёс — интеграция модуля в штатную оптику.</li>
-            </ul>
-            <h3 style="margin-top:20px;">Установка</h3>
-            <p class="muted">4 точки крепления под саморезы или втулки, подключение питания и провода управления фарой.</p>
+    </div>
+</section>
+
+<!-- ====== 11. ДОРОЖНАЯ КАРТА ====== -->
+<section id="roadmap" class="alt">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Планы</div>
+            <h2>Этапы развития проекта</h2>
+        </div>
+        <div class="roadmap">
+            <div class="card stage done">
+                <div class="st">Выполнено</div>
+                <h3>Прототип</h3>
+                <ul>
+                    <li>Электроника на ESP32 + MPU6050</li>
+                    <li>4 версии прошивки</li>
+                </ul>
+            </div>
+            <div class="card stage done">
+                <div class="st">Выполнено</div>
+                <h3>Испытания</h3>
+                <ul>
+                    <li>Сравнение фильтров и регуляторов</li>
+                    <li>Выбор итогового алгоритма</li>
+                </ul>
+            </div>
+            <div class="card stage now">
+                <div class="st">В работе</div>
+                <h3>Опытный образец</h3>
+                <ul>
+                    <li>Защищённый корпус IP54</li>
+                    <li>Возврат фары в нейтраль при сбое датчика</li>
+                    <li>Крепления под популярные модели</li>
+                </ul>
+            </div>
+            <div class="card stage next">
+                <div class="st">Далее</div>
+                <h3>Пилотные продажи</h3>
+                <ul>
+                    <li>Тестирование с райдерами и сервисами</li>
+                    <li>Регистрация ООО и прав на ПО</li>
+                    <li>Первая партия</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- ====== 9. КОМАНДА ====== -->
+<!-- ====== 12. КОМАНДА ====== -->
 <section id="team">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Команда</div>
             <h2>Кто делает проект</h2>
         </div>
-        <!-- ЗАМЕНИТЕ данные на реальные: ФИО, роль, вуз. Можно вставить фото вместо инициалов: <img class="avatar" src="img/..."> -->
+        <!-- ЗАМЕНИТЕ на реальные данные. Фото участника: замените <div class="avatar">ФИ</div>
+             на <img class="avatar" src="img/team-1.jpg" alt="Фамилия Имя"> -->
         <div class="team">
             <div class="card member">
                 <div class="avatar">ФИ</div>
@@ -545,8 +760,8 @@
     </div>
 </section>
 
-<!-- ====== 10. КОНТАКТЫ ====== -->
-<section id="contacts">
+<!-- ====== 13. КОНТАКТЫ ====== -->
+<section id="contacts" class="alt">
     <div class="container">
         <div class="contact-box">
             <div>
@@ -568,10 +783,16 @@
 
 <footer>
     <div class="container">
+        <div class="logos">
+            <img src="img/fondsodin.SVG" alt="Фонд содействия инновациям" />
+            <img src="img/platunitehpred.svg" alt="Платформа университетского технологического предпринимательства" />
+            <img src="img/fp-tehnologii.svg" alt="Федеральный проект «Технологии»"
+                 onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>Федеральный проект<br>«Технологии»</span>'" />
+        </div>
         <!-- После регистрации ООО укажите название компании и ИНН -->
         <div>© 2026 Проект «Создание системы стабилизации фары моноколеса»</div>
         <p class="support-text">
-            Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап».
+            Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» Платформы университетского технологического предпринимательства федерального проекта «Технологии», входящего в состав национального проекта «Эффективная и конкурентная экономика».
         </p>
     </div>
 </footer>
