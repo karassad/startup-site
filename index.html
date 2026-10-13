@@ -79,9 +79,10 @@
             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
             border-radius: 16px; padding: 18px;
         }
-        .hero-visual { max-width: 380px; justify-self: center; margin: 0; }
-        .hero-visual img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 40%; border-radius: 10px; }
-        .hero-visual figcaption { color: #c3d3ea; font-size: 13px; }
+        .hero-visual svg { width: 100%; height: auto; display: block; }
+        .hero-visual .cap { font-size: 13px; color: #c3d3ea; margin-top: 10px; text-align: center; }
+        .solution-photo { max-width: 360px; justify-self: center; margin: 0; }
+        .solution-photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 40%; border-radius: 8px; }
         .hero-missing { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.35); color: #dbe6f5; }
         .hero-missing small { color: #a9bedb; }
 
@@ -182,6 +183,10 @@
         .result-box .card { text-align: center; }
         .result-box strong { display: block; font-size: 1.7rem; color: var(--blue); line-height: 1.2; margin-bottom: 4px; }
 
+        .platform { display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: center; margin-bottom: 30px; }
+        .platform img { background: #fff; border-radius: 10px; width: 100%; aspect-ratio: 1; object-fit: contain; }
+        .platform h3 { font-size: 1.35rem; }
+        @media (max-width: 700px) { .platform { grid-template-columns: 1fr; } .platform img { max-width: 280px; margin: 0 auto; } }
         /* Как пользоваться */
         .steps { list-style: none; counter-reset: s; display: grid; gap: 14px; }
         .steps li {
@@ -299,12 +304,34 @@
                 Свет фары остаётся на дороге, как бы ни наклонялся корпус.
             </p>
         </div>
-        <figure class="hero-visual">
-            <a href="img/module.jpg" target="_blank" rel="noopener">
-                <img src="img/module.jpg" alt="Плата системы стабилизации, установленная на моноколесо" />
-            </a>
-            <figcaption>Прототип на моноколесе: плата ESP32 с датчиком MPU6050</figcaption>
-        </figure>
+        <div class="hero-visual">
+            <svg viewBox="0 0 520 300" role="img" aria-label="Сравнение: без системы луч уходит в землю при разгоне, с системой остаётся параллельным дороге">
+                <defs>
+                    <linearGradient id="beamBad" x1="0" x2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="beamGood" x1="0" x2="1"><stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/><stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/></linearGradient>
+                </defs>
+                <text x="130" y="26" fill="#ffb3a7" font-size="15" font-weight="700" text-anchor="middle">Без системы</text>
+                <line x1="10" y1="240" x2="250" y2="240" stroke="#5f7ea6" stroke-width="2"/>
+                <g transform="rotate(14 70 205)">
+                    <rect x="52" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
+                    <circle cx="70" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
+                    <rect x="86" y="140" width="12" height="14" rx="3" fill="#ffd27a"/>
+                    <polygon points="98,141 250,175 250,215 98,153" fill="url(#beamBad)"/>
+                </g>
+                <text x="130" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч упирается в землю</text>
+                <line x1="262" y1="40" x2="262" y2="280" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 5"/>
+                <text x="392" y="26" fill="#9fe0b0" font-size="15" font-weight="700" text-anchor="middle">С системой</text>
+                <line x1="275" y1="240" x2="515" y2="240" stroke="#5f7ea6" stroke-width="2"/>
+                <g transform="rotate(14 335 205)">
+                    <rect x="317" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
+                    <circle cx="335" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
+                </g>
+                <rect x="358" y="150" width="14" height="14" rx="3" fill="#ffe7a8"/>
+                <polygon points="372,151 515,141 515,183 372,163" fill="url(#beamGood)"/>
+                <text x="395" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч смотрит вперёд</text>
+            </svg>
+            <div class="cap">Корпус наклонён одинаково — меняется только положение фары</div>
+        </div>
     </div>
 </section>
 
@@ -356,15 +383,19 @@
             <p class="muted" style="margin-top:12px;">
                 Модуль не вмешивается в электронику и балансировку моноколеса — он управляет только положением фары.
             </p>
-        </div>
-        <div>
-            <h3>Преимущества</h3>
+            <h3 style="margin-top:28px;">Преимущества</h3>
             <ul class="checklist">
                 <li><strong>Точная оценка угла.</strong> Фильтр Калмана объединяет данные гироскопа и акселерометра и компенсирует дрейф гироскопа.</li>
                 <li><strong>Плавная отработка.</strong> ПИД-регулятор удерживает фару без рывков и колебаний.</li>
                 <li><strong>Ограничение хода.</strong> Отклонение сервопривода программно ограничено, фара не уходит в крайние положения.</li>
             </ul>
         </div>
+        <figure class="solution-photo">
+            <a href="img/module.jpg" target="_blank" rel="noopener">
+                <img src="img/module.jpg" alt="Плата системы стабилизации, установленная на моноколесо" />
+            </a>
+            <figcaption>Прототип на моноколесе: плата ESP32 с датчиком MPU6050</figcaption>
+        </figure>
     </div>
 </section>
 
@@ -468,6 +499,19 @@
                 второй установлен на самой фаре и измеряет её фактический угол. Оба угла
                 записывались одновременно и строились на одном графике.
             </p>
+        </div>
+
+        <div class="card platform">
+            <img src="img/rksadflksdf.png" alt="Моноколесо Extreme Bull Rocket" />
+            <div>
+                <div class="eyebrow">Испытательная платформа</div>
+                <h3>Extreme Bull Rocket</h3>
+                <p class="muted">
+                    Все испытания проводились на серийном моноколесе Extreme Bull Rocket. Плата модуля
+                    закреплялась на корпусе колеса, углы наклона корпуса и фары записывались во время
+                    реальных поездок с разгонами и торможениями.
+                </p>
+            </div>
         </div>
 
         <div class="result-box">
