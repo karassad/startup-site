@@ -72,24 +72,18 @@
         }
         .hero h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 18px; }
         .hero p.lead { font-size: 1.15rem; color: #d6e3f5; margin-bottom: 26px; }
-        .hero-facts { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 30px; }
+        .hero-facts { display: flex; gap: 26px; flex-wrap: wrap; }
         .hero-facts div { font-size: 13px; color: #b9cbe4; }
         .hero-facts strong { display: block; font-size: 1.35rem; color: #fff; }
-        .btns { display: flex; gap: 14px; flex-wrap: wrap; }
-        .btn {
-            display: inline-block; padding: 13px 26px; border-radius: 8px;
-            text-decoration: none; font-weight: 600; font-size: 15px;
-        }
-        .btn-primary { background: var(--amber); color: #1b1300; }
-        .btn-primary:hover { background: #ffb53d; }
-        .btn-ghost { border: 1.5px solid rgba(255,255,255,0.6); color: #fff; }
-        .btn-ghost:hover { background: rgba(255,255,255,0.1); }
         .hero-visual {
             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
             border-radius: 16px; padding: 18px;
         }
-        .hero-visual svg { width: 100%; height: auto; display: block; }
-        .hero-visual .cap { font-size: 13px; color: #c3d3ea; margin-top: 10px; text-align: center; }
+        .hero-visual { max-width: 380px; justify-self: center; margin: 0; }
+        .hero-visual img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 40%; border-radius: 10px; }
+        .hero-visual figcaption { color: #c3d3ea; font-size: 13px; }
+        .hero-missing { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.35); color: #dbe6f5; }
+        .hero-missing small { color: #a9bedb; }
 
         /* ---------- Секции ---------- */
         section { padding: 68px 0; }
@@ -180,8 +174,10 @@
         /* Испытания */
         .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .gallery img { height: auto; object-fit: contain; }
+        .charts { grid-template-columns: 1fr; max-width: 960px; margin: 0 auto; gap: 26px; }
+        .charts figcaption { font-size: 15px; }
         .result-box {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 26px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 0 auto 26px; max-width: 760px;
         }
         .result-box .card { text-align: center; }
         .result-box strong { display: block; font-size: 1.7rem; color: var(--blue); line-height: 1.2; margin-bottom: 4px; }
@@ -202,7 +198,7 @@
         code { background: var(--blue-soft); color: var(--navy); padding: 1px 6px; border-radius: 4px; font-size: 14px; }
 
         /* Дорожная карта */
-        .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
         .stage { border-top: 4px solid var(--line); }
         .stage.done { border-top-color: var(--green); }
         .stage.now { border-top-color: var(--amber); }
@@ -271,9 +267,6 @@
         <div class="logos">
             <img src="img/fondsodin.SVG" alt="Фонд содействия инновациям" />
             <img src="img/platunitehpred.svg" alt="Платформа университетского технологического предпринимательства" />
-            <!-- ЛОГОТИП ФП «Технологии»: положите файл img/fp-tehnologii.svg (или .png и поправьте путь) -->
-            <img src="img/fp-tehnologii.svg" alt="Федеральный проект «Технологии»"
-                 onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>Федеральный проект<br>«Технологии»</span>'" />
         </div>
         <p class="support-text">
             Проект реализован при поддержке Фонда содействия инновациям в рамках программы «Студенческий стартап» Платформы университетского технологического предпринимательства федерального проекта «Технологии», входящего в состав национального проекта «Эффективная и конкурентная экономика».
@@ -285,7 +278,6 @@
     <div class="container">
         <a href="#problem">Проблема</a>
         <a href="#solution">Решение</a>
-        <a href="#photos">Фото</a>
         <a href="#how">Как работает</a>
         <a href="#specs">Характеристики</a>
         <a href="#tests">Испытания</a>
@@ -293,8 +285,6 @@
         <a href="#compare">Сравнение</a>
         <a href="#market">Для кого</a>
         <a href="#roadmap">Планы</a>
-        <a href="#team">Команда</a>
-        <a href="#contacts">Контакты</a>
     </div>
 </nav>
 
@@ -308,46 +298,13 @@
                 Без «слепых зон» при разгоне и без ослепления пешеходов при торможении.
                 Свет фары остаётся на дороге, как бы ни наклонялся корпус.
             </p>
-            <div class="hero-facts">
-                <div><strong>≈1°</strong>отклонение фары при наклоне корпуса до 8° на испытаниях</div>
-                <div><strong>100 Гц</strong>частота цикла управления</div>
-            </div>
-            <div class="btns">
-                <a class="btn btn-primary" href="#contacts">Оставить заявку на тестирование</a>
-                <a class="btn btn-ghost" href="#how">Как это работает</a>
-            </div>
         </div>
-        <div class="hero-visual">
-            <svg viewBox="0 0 520 300" role="img" aria-label="Сравнение: без системы луч уходит в землю при разгоне, с системой остаётся параллельным дороге">
-                <defs>
-                    <linearGradient id="beamBad" x1="0" x2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></linearGradient>
-                    <linearGradient id="beamGood" x1="0" x2="1"><stop offset="0" stop-color="#ffe7a8" stop-opacity=".95"/><stop offset="1" stop-color="#ffe7a8" stop-opacity="0"/></linearGradient>
-                </defs>
-                <!-- Без системы -->
-                <text x="130" y="26" fill="#ffb3a7" font-size="15" font-weight="700" text-anchor="middle">Без системы</text>
-                <line x1="10" y1="240" x2="250" y2="240" stroke="#5f7ea6" stroke-width="2"/>
-                <g transform="rotate(14 70 205)">
-                    <rect x="52" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
-                    <circle cx="70" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
-                    <rect x="86" y="140" width="12" height="14" rx="3" fill="#ffd27a"/>
-                    <polygon points="98,141 250,175 250,215 98,153" fill="url(#beamBad)"/>
-                </g>
-                <text x="130" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч упирается в землю</text>
-                <!-- разделитель -->
-                <line x1="262" y1="40" x2="262" y2="280" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 5"/>
-                <!-- С системой -->
-                <text x="392" y="26" fill="#9fe0b0" font-size="15" font-weight="700" text-anchor="middle">С системой</text>
-                <line x1="275" y1="240" x2="515" y2="240" stroke="#5f7ea6" stroke-width="2"/>
-                <g transform="rotate(14 335 205)">
-                    <rect x="317" y="120" width="36" height="70" rx="10" fill="#2a4f80" stroke="#8fb0da" stroke-width="2"/>
-                    <circle cx="335" cy="205" r="34" fill="none" stroke="#8fb0da" stroke-width="7"/>
-                </g>
-                <rect x="358" y="150" width="14" height="14" rx="3" fill="#ffe7a8"/>
-                <polygon points="372,151 515,141 515,183 372,163" fill="url(#beamGood)"/>
-                <text x="395" y="275" fill="#c3d3ea" font-size="13" text-anchor="middle">разгон: луч смотрит вперёд</text>
-            </svg>
-            <div class="cap">Корпус наклонён одинаково — меняется только положение фары</div>
-        </div>
+        <figure class="hero-visual">
+            <a href="img/module.jpg" target="_blank" rel="noopener">
+                <img src="img/module.jpg" alt="Плата системы стабилизации, установленная на моноколесо" />
+            </a>
+            <figcaption>Прототип на моноколесе: плата ESP32 с датчиком MPU6050</figcaption>
+        </figure>
     </div>
 </section>
 
@@ -411,44 +368,13 @@
     </div>
 </section>
 
-<!-- ====== 4. ФОТО РАБОЧЕГО СОСТОЯНИЯ ======
-     КУДА КЛАСТЬ ФОТО: в папку img/ под этими именами. Пока файла нет — видна рамка-заглушка.
-       img/monowheel-1.jpg — моноколесо с установленной платой
-       img/monowheel-2.jpg — световое пятно от фары на дороге
-     Если формат другой (например .png) — поправьте путь в src и href ниже. -->
-<section id="photos">
-    <div class="container">
-        <div class="section-head">
-            <div class="eyebrow">Фото</div>
-            <h2>Система в работе</h2>
-            <p class="muted">Нажмите на фото, чтобы открыть его в полном размере.</p>
-        </div>
-        <div class="gallery">
-            <figure>
-                <a href="img/monowheel-1.jpg" target="_blank" rel="noopener">
-                    <img src="img/monowheel-1.jpg" alt="Моноколесо с установленной платой системы стабилизации"
-                         onerror="this.parentNode.outerHTML='<div class=&quot;photo-missing&quot;>Моноколесо с платой<small>img/monowheel-1.jpg</small></div>'" />
-                </a>
-                <figcaption>Моноколесо с установленной системой стабилизации</figcaption>
-            </figure>
-            <figure>
-                <a href="img/monowheel-2.jpg" target="_blank" rel="noopener">
-                    <img src="img/monowheel-2.jpg" alt="Световое пятно от фары на дороге"
-                         onerror="this.parentNode.outerHTML='<div class=&quot;photo-missing&quot;>Световое пятно на дороге<small>img/monowheel-2.jpg</small></div>'" />
-                </a>
-                <figcaption>Световое пятно от фары на дороге</figcaption>
-            </figure>
-        </div>
-    </div>
-</section>
-
 <!-- ====== 5. КАК РАБОТАЕТ ====== -->
 <section id="how" class="alt">
     <div class="container">
         <div class="section-head">
             <div class="eyebrow">Принцип работы</div>
             <h2>Как работает система</h2>
-            <p class="muted">Замкнутый контур управления: измерить наклон → отфильтровать шум → рассчитать поправку → повернуть фару. Цикл повторяется каждые 10 мс.</p>
+            <p class="muted">В модуле реализован замкнутый контур управления: измерить наклон - отфильтровать шум - рассчитать поправку - повернуть фару. Цикл повторяется каждые 10 мс. На схеме — итоговый вариант алгоритма.</p>
         </div>
 
         <div class="diagram">
@@ -468,15 +394,14 @@
                     <text x="345" y="106" font-size="12" fill="#5b6675">угол без шума и дрейфа</text>
                     <rect x="450" y="60" width="170" height="60" rx="10" fill="#fff6e3" stroke="#f5a524" stroke-width="2"/>
                     <text x="535" y="86" font-size="15" font-weight="700" fill="#0f2a4a">ПИД-регулятор</text>
-                    <text x="535" y="106" font-size="12" fill="#5b6675">цель — 0° (горизонт)</text>
+                    <text x="535" y="106" font-size="12" fill="#5b6675">цель — наклон фары 0° </text>
 
                     <rect x="700" y="40" width="130" height="80" rx="12" fill="#e9f1fc" stroke="#1d5fbf" stroke-width="2"/>
                     <text x="765" y="74" font-size="16" font-weight="700" fill="#0f2a4a">Сервопривод</text>
                     <text x="765" y="98" font-size="13" fill="#5b6675">RDS3115MG</text>
 
                     <rect x="870" y="40" width="120" height="80" rx="12" fill="#0f2a4a"/>
-                    <text x="930" y="74" font-size="16" font-weight="700" fill="#ffe7a8">Фара</text>
-                    <text x="930" y="98" font-size="13" fill="#c3d3ea">ровный свет</text>
+                    <text x="930" y="84" font-size="16" font-weight="700" fill="#ffe7a8">Фара</text>
                 </g>
                 <line x1="180" y1="80" x2="258" y2="90" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
                 <line x1="430" y1="90" x2="448" y2="90" stroke="#1d5fbf" stroke-width="2.5" marker-end="url(#ar)"/>
@@ -492,11 +417,11 @@
             </div>
             <div class="card">
                 <h3>Фильтрация</h3>
-                <p class="muted">Фильтр Калмана объединяет оба сигнала: акселерометр точен в покое, гироскоп — в движении. Вибрации и дрейф отсекаются.</p>
+                <p class="muted">Фильтр объединяет оба сигнала: акселерометр точен в покое, гироскоп — в движении. Мы испытали два фильтра — комплементарный и Калмана; итоговым выбран фильтр Калмана, он дополнительно компенсирует дрейф гироскопа.</p>
             </div>
             <div class="card">
                 <h3>Регулирование</h3>
-                <p class="muted">ПИД-регулятор сравнивает угол с горизонтом и рассчитывает, на сколько повернуть фару.</p>
+                <p class="muted">Регулятор сравнивает угол с горизонтом и рассчитывает, на сколько повернуть фару. Испытано два способа: прямое управление по углу и ПИД-регулятор; итоговым выбран ПИД.</p>
             </div>
             <div class="card">
                 <h3>Компенсация</h3>
@@ -517,14 +442,15 @@
             <table class="specs">
                 <tr><th>Параметр</th><th>Значение</th></tr>
                 <tr><td>Вычислительное ядро</td><td>ESP32 DevKit V1 (32-bit, Wi-Fi / Bluetooth)</td></tr>
-                <tr><td>Инерциальный датчик</td><td>MPU6050 / GY-521 — 6 осей (MEMS-акселерометр ±2 g + гироскоп ±250 °/с)</td></tr>
-                <tr><td>Алгоритм обработки</td><td>Фильтр Калмана с оценкой смещения гироскопа + дискретный ПИД-регулятор</td></tr>
-                <tr><td>Частота цикла управления</td><td>100 Гц (каждые 10 мс)</td></tr>
-                <tr><td>Точность удержания</td><td>≈1° при наклоне корпуса до 8° (по результатам испытаний)</td></tr>
-                <tr><td>Диапазон стабилизации</td><td>до ±25° по вертикальной оси <span class="badge">расчётный</span></td></tr>
+                <tr><td>Инерциальный датчик</td><td>MPU6050 / GY-521 </td></tr>
+                <tr><td>Испытанные фильтры</td><td>Комплементарный и фильтр Калмана </td></tr>
+                <tr><td>Испытанные способы управления</td><td>Прямое управление сервоприводом по углу и ПИД-регулятор</td></tr>
+                <tr><td>Итоговый алгоритм</td><td>Фильтр Калмана + ПИД-регулятор</td></tr>
+                <tr><td>Частота цикла управления</td><td>100 Гц</td></tr>
+                <tr><td>Диапазон стабилизации</td><td>до ±25° по вертикальной оси </td></tr>
                 <tr><td>Привод</td><td>Цифровой сервопривод с металлическим редуктором RDS3115MG (момент до 13,5 кг·см)</td></tr>
-                <tr><td>Питание</td><td>5 В DC (низковольтное)</td></tr>
-                <tr><td>Защита корпуса</td><td>от брызг и пыли, класс IP54 <span class="badge">в разработке</span></td></tr>
+                <tr><td>Питание</td><td>5В DC (низковольтное)</td></tr>
+                <tr><td>Корпус</td><td>Собственной разработки, напечатан на 3D-принтере</td></tr>
                 <tr><td>Габариты модуля</td><td>менее 15 × 15 см, установка под фару</td></tr>
             </table>
         </div>
@@ -547,77 +473,41 @@
         <div class="result-box">
             <div class="card"><strong>до 8°</strong><span class="muted">наклон корпуса в ходе испытаний</span></div>
             <div class="card"><strong>≈1°</strong><span class="muted">отклонение фары от горизонта в основном режиме</span></div>
-            <div class="card"><strong>4</strong><span class="muted">варианта алгоритма сравнено</span></div>
         </div>
 
         <h3>Какие варианты сравнивали</h3>
         <div class="table-wrap" style="margin:14px 0 8px;">
             <table class="variants">
                 <tr><th>Вариант</th><th>Фильтр</th><th>Управление сервоприводом</th></tr>
-                <tr><td>1</td><td>Комплементарный (α = 0,98)</td><td>Без ПИД, напрямую по углу</td></tr>
-                <tr><td>2</td><td>Комплементарный (α = 0,98)</td><td>ПИД-регулятор</td></tr>
-                <tr><td>3</td><td>Калмана</td><td>Без ПИД, напрямую по углу</td></tr>
-                <tr class="ours"><td>4 <span class="badge">итоговый</span></td><td>Калмана</td><td>ПИД-регулятор (Kp = 1,2; Ki = 0,5; Kd = 0,1)</td></tr>
+                <tr><td>1</td><td>Комплементарный</td><td>П-регулятор</td></tr>
+                <tr><td>2</td><td>Комплементарный </td><td>ПИД-регулятор</td></tr>
+                <tr><td>3</td><td>Калмана</td><td>П-регулятор</td></tr>
+                <tr class="ours"><td>4 <span class="badge">итоговый</span></td><td>Калмана</td><td>ПИД-регулятор</td></tr>
             </table>
         </div>
-        <p class="note">Коэффициенты ПИД-регулятора подобраны экспериментально.</p>
 
         <h3 class="sub-h">Графики углов наклона</h3>
-        <div class="gallery">
+        <div class="gallery charts">
             <figure>
                 <a href="img/kalpid.png" target="_blank" rel="noopener"><img src="img/kalpid.png" alt="График: фильтр Калмана и ПИД-регулятор" /></a>
-                <figcaption><strong>Вариант 4: фильтр Калмана + ПИД</strong> — итоговый</figcaption>
+                <figcaption><strong>Вариант 4: фильтр Калмана + ПИД-регулятор</strong> — итоговый</figcaption>
             </figure>
             <figure>
                 <a href="img/compid.png" target="_blank" rel="noopener"><img src="img/compid.png" alt="График: комплементарный фильтр и ПИД-регулятор" /></a>
-                <figcaption>Вариант 2: комплементарный фильтр + ПИД</figcaption>
+                <figcaption>Вариант 2: комплементарный фильтр + ПИД-регулятор</figcaption>
             </figure>
             <figure>
                 <a href="img/kal.png" target="_blank" rel="noopener"><img src="img/kal.png" alt="График: фильтр Калмана без ПИД-регулятора" /></a>
-                <figcaption>Вариант 3: фильтр Калмана без ПИД</figcaption>
+                <figcaption>Вариант 3: фильтр Калмана + П-регулятор</figcaption>
             </figure>
             <figure>
                 <a href="img/kom.png" target="_blank" rel="noopener"><img src="img/kom.png" alt="График: комплементарный фильтр без ПИД-регулятора" /></a>
-                <figcaption>Вариант 1: комплементарный фильтр без ПИД</figcaption>
+                <figcaption>Вариант 1: комплементарный фильтр + П-регулятор</figcaption>
             </figure>
         </div>
         <p class="note">
             Синяя линия — наклон корпуса моноколеса, оранжевая — фактический угол фары, зелёный пунктир — горизонт (0°).
-            Ось X — время, с; ось Y — угол, градусы. Отдельные кратковременные выбросы на графике фары —
-            задача следующей итерации доработки.
         </p>
-    </div>
-</section>
-
-<!-- ====== 8. КАК ПОЛЬЗОВАТЬСЯ ====== -->
-<section id="usage">
-    <div class="container two-col">
-        <div>
-            <div class="eyebrow">Инструкция</div>
-            <h2>Как установить и пользоваться</h2>
-            <p class="muted">
-                Установка не требует вмешательства в электронику моноколеса.
-                После включения система работает автоматически — райдеру ничего настраивать в дороге не нужно.
-            </p>
-        </div>
-        <ol class="steps">
-            <li>
-                <h3>Установите модуль</h3>
-                <p class="muted">Закрепите корпус модуля под фарой на 4 точки (саморезы или втулки), установите фару на поворотный кронштейн сервопривода.</p>
-            </li>
-            <li>
-                <h3>Подключите питание</h3>
-                <p class="muted">Подведите питание 5 В и провод управления фарой.</p>
-            </li>
-            <li>
-                <h3>Включите и не двигайте 5 секунд</h3>
-                <p class="muted">При включении модуль калибрует гироскоп. Моноколесо в это время должно стоять неподвижно.</p>
-            </li>
-            <li>
-                <h3>Поезжайте</h3>
-                <p class="muted">Стабилизация работает автоматически: фара удерживает свет на дороге при разгоне, торможении и на неровностях.</p>
-            </li>
-        </ol>
     </div>
 </section>
 
@@ -706,77 +596,14 @@
                     <li>Выбор итогового алгоритма</li>
                 </ul>
             </div>
-            <div class="card stage now">
-                <div class="st">В работе</div>
-                <h3>Опытный образец</h3>
-                <ul>
-                    <li>Защищённый корпус IP54</li>
-                    <li>Возврат фары в нейтраль при сбое датчика</li>
-                    <li>Крепления под популярные модели</li>
-                </ul>
-            </div>
             <div class="card stage next">
                 <div class="st">Далее</div>
-                <h3>Пилотные продажи</h3>
+                <h3>Доработка</h3>
                 <ul>
-                    <li>Тестирование с райдерами и сервисами</li>
-                    <li>Регистрация ООО и прав на ПО</li>
-                    <li>Первая партия</li>
+                    <li>Подавление кратковременных выбросов угла фары</li>
+                    <li>Крепления под популярные модели моноколёс</li>
                 </ul>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== 12. КОМАНДА ====== -->
-<section id="team">
-    <div class="container">
-        <div class="section-head">
-            <div class="eyebrow">Команда</div>
-            <h2>Кто делает проект</h2>
-        </div>
-        <!-- ЗАМЕНИТЕ на реальные данные. Фото участника: замените <div class="avatar">ФИ</div>
-             на <img class="avatar" src="img/team-1.jpg" alt="Фамилия Имя"> -->
-        <div class="team">
-            <div class="card member">
-                <div class="avatar">ФИ</div>
-                <h3>Фамилия Имя</h3>
-                <div class="role">Руководитель проекта</div>
-                <p class="muted">Вуз, направление подготовки, курс</p>
-            </div>
-            <div class="card member">
-                <div class="avatar">ФИ</div>
-                <h3>Фамилия Имя</h3>
-                <div class="role">Встраиваемые системы и ПО</div>
-                <p class="muted">Вуз, направление подготовки, курс</p>
-            </div>
-            <div class="card member">
-                <div class="avatar">ФИ</div>
-                <h3>Фамилия Имя</h3>
-                <div class="role">Конструирование и испытания</div>
-                <p class="muted">Вуз, направление подготовки, курс</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== 13. КОНТАКТЫ ====== -->
-<section id="contacts" class="alt">
-    <div class="container">
-        <div class="contact-box">
-            <div>
-                <h2>Хотите протестировать систему?</h2>
-                <p>
-                    Напишите нам и укажите модель вашего моноколеса. Мы набираем райдеров и сервисы
-                    для тестирования прототипа.
-                </p>
-            </div>
-            <!-- ЗАМЕНИТЕ контакты на реальные -->
-            <ul class="contact-list">
-                <li><span>Электронная почта</span><a href="mailto:example@mail.ru">example@mail.ru</a></li>
-                <li><span>Telegram</span><a href="https://t.me/username">@username</a></li>
-                <li><span>Телефон</span><a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
-            </ul>
         </div>
     </div>
 </section>
@@ -786,8 +613,6 @@
         <div class="logos">
             <img src="img/fondsodin.SVG" alt="Фонд содействия инновациям" />
             <img src="img/platunitehpred.svg" alt="Платформа университетского технологического предпринимательства" />
-            <img src="img/fp-tehnologii.svg" alt="Федеральный проект «Технологии»"
-                 onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>Федеральный проект<br>«Технологии»</span>'" />
         </div>
         <!-- После регистрации ООО укажите название компании и ИНН -->
         <div>© 2026 Проект «Создание системы стабилизации фары моноколеса»</div>
